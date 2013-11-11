@@ -109,7 +109,8 @@ class Service
   end
 
   def apn_pem_path
-    pemfile.current_path.gsub("/public/uploads", "/uploads")
+    #FIX don't remove "uploads" from path
+    pemfile.current_path#.gsub("/public/uploads", "/uploads")
   end
 
   private
