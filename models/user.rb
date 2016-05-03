@@ -8,7 +8,8 @@ class User
   field :notifications_count, :type => Integer
 
   # You can define indexes on documents using the index macro:
-  index({ unique_hash: 1}, {unique: true})
+  index({ unique_hash: 1} ) # FIX: this field isn't that unique across services
+  index({ notifications_count: 1 })
 
   belongs_to :service
   embeds_many :apn_device_tokens

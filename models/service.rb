@@ -83,7 +83,7 @@ class Service
   def batch_iterate_users_with_notifications(params = {})
     per_batch = params.fetch(:batch_size, 1000)
     0.step(users.count, per_batch) do |offset|
-      users_batch = users.where("this.notifications && this.notifications.length > 0").skip(offset).limit(per_batch)
+      users_batch = users.where(:notifications_count => { "$gt" => 0 }).skip(offset).limit(per_batch)
       yield users_batch if block_given?
     end
   end
